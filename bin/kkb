@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+// console.log('cli......');
+const name = (name) => {
+  console.log('init_project: ' + name);
+};
+const program = require('commander');
+const { init, refresh } = require('../lib/api');
+program.version(require('../package').version); //版本号
+
+program
+  .command('init <name>') //例如kkb init hello 一个文件夹
+  .description('init project') //解释
+  .action(init); //接受一个回调函数
+
+program.command('refresh').description('refresh routers...').action(refresh);
+// console.log(process.argv);
+program.parse(process.argv); //解析命令行工具
